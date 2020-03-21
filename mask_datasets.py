@@ -11,12 +11,12 @@ filenames = [
 ]
 
 path = "/home/rebekka/t2b/Projekte/vision/multi30k-dataset/data/task1/tok/"
-ks = [i for i in range(4)]
+ks = [4, 6, 12, 20]
 
 for filename in filenames:
     with open(path+filename) as f:
         content = f.read().split("\n")[:-1]
-    new_contents = {1: [], 0: [], 2: [], 3: []}
+    new_contents = {4: [], 6: [], 12: [], 20: []}
     for line in content:
         for k in ks:
             new_line = ""
