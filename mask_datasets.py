@@ -2,19 +2,16 @@
 # author: R. Hubert
 # email: hubert@cl.uni-heidelberg.de
 
+""" create training and test files with k remaining words """
+
+from constants import filepath, filenames
+
 placeholder = "[v]"
 
-filenames = [
-    "new_train.lc.norm.tok.en",
-    "test_2016_flickr.lc.norm.tok.en",
-    "test_2017_flickr.lc.norm.tok.en"
-]
-
-path = "/home/rebekka/t2b/Projekte/vision/multi30k-dataset/data/task1/tok/"
 ks = [4, 6, 12, 20]
 
 for filename in filenames:
-    with open(path+filename) as f:
+    with open(filepath + filename) as f:
         content = f.read().split("\n")[:-1]
     new_contents = {4: [], 6: [], 12: [], 20: []}
     for line in content:
@@ -22,7 +19,9 @@ for filename in filenames:
             new_line = ""
             counter = 0
             for word in line.split():
-                if (counter < k) or ((line.index(word) == len(line) -1) and (word == ".")):
+                if (counter < k) or (
+                    (line.index(word) == len(line) - 1) and (word == ".")
+                ):
                     new_line += word
                 else:
                     new_line += placeholder
@@ -30,6 +29,7 @@ for filename in filenames:
                 counter += 1
             new_contents[k].append(new_line.strip())
     for k in ks:
-        with open(path+filename.split(".txt")[0]+"_%s_words_remaining.txt" % k, "w") as f:
+        with open(
+            filepath + filename.split(".txt")[0] + f"_{k}_words_remaining.txt", "w"
+        ) as f:
             f.write("\n".join(new_contents[k]))
-

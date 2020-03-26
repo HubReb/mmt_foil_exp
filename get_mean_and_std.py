@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+""" calculate mean and std for all settings over three runs (requires results for each run) """
+
 import numpy as np
 
 
@@ -10,7 +12,7 @@ def read_file(filename):
 
 
 def get_mean(data):
-    data = [[d.replace("|", "").strip()  for d in line.split("||")] for line in data]
+    data = [[d.replace("|", "").strip() for d in line.split("||")] for line in data]
     b1, b2, b3, b4, meteor, cider, rouge = [], [], [], [], [], [], []
     scores = [b1, b2, b3, b4, meteor, cider, rouge]
     counter = 0
@@ -37,3 +39,17 @@ print(get_mean(read_file("mmt_4_remaining_results")))
 print(get_mean(read_file("mmt_6_remaining_results")))
 print(get_mean(read_file("mmt_12_remaining_results")))
 print(get_mean(read_file("mmt_20_remaining_results")))
+print("all pos")
+print(get_mean(read_file("mmt_random_pos_replacement_results")))
+print("dt")
+print(get_mean(read_file("mmt_random_pos_replacement_of_dt_results")))
+print("nn")
+print(get_mean(read_file("mmt_random_pos_replacement_of_nn_results")))
+print("vb")
+print(get_mean(read_file("mmt_random_pos_replacement_of_vb_results")))
+print("jj")
+print(get_mean(read_file("mmt_random_pos_replacement_of_jj_results")))
+print("prp")
+print(get_mean(read_file("mmt_random_pos_replacement_of_prp_results")))
+print("in")
+print(get_mean(read_file("mmt_random_pos_replacement_of_in_results")))
