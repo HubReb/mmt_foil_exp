@@ -124,6 +124,9 @@
 
 ## impressions for foil words - TODO
 
+* maximum image attention can be the same as for complete, but in most cases it
+  is a bit smaller (0.12 to 0.20 or even 0.12 - 0.40 (foil word spoils
+  translation)
 * generally the most damaging replacement are NNs while all others hurt overall
   performance less
     * careful: NNs are also the biggest pos-tag group (e.g. PRP is *much*
@@ -140,6 +143,9 @@
     * index 655
     * index 678
     * 245
+* interestingly, textual attention takes a dive for index 678 while image
+  attention rises (replacement of nn), *but* this does not apply for all nn
+  replacement (correlation more likely than causality)
 * index 245 and 138 are thus resistent to both foil words and word ablations ->
   very easy?
 * foil words instances with effect
@@ -150,10 +156,27 @@
 * index 30 and index 546 deal with foil words well except for NN replacement
 * foil words turn translation into nonsense for index 948, yet grammatically
   better than complete model
-* index 996 fails only if PRP is replaced
+    * but image attention is entirely contrary to other indices: many random
+      replacement assign a higher max. im. attention than the complete model
+* index 996 fails only if PRP is replaced - prp models worse than the others?
 * index 39 is just as bad for foil words
-* index 706 is only weak to vp, but it only matters for the image attention,
-  translation is correct
+* index 706 is especially weak to vp, but it only matters for the image attention,
+  translation is correct or wrong (cars replaced with cartoon results in
+  translation "garbage")
 * index 254 suffers from replacing of all kind
 * index 948 achieves *better* results with foil words - considering the textual
   attention I am tempted to view this as a mere coincidence
+* jj replacement results in wrong translations due to model training: original
+  sentences are translated to nonsense by the jj replaced model
+* if the complete model fails to translate the sentence, the replaced data
+  models fail
+    * index 948 is utter nonsense and index 39 too
+    * index 39 shows very high max. image attentions (only nn is smaller than
+      complete), yet translations are nonsense
+    * index 17 is also utter nonsense, but has lower max image attention than
+      complete model 
+        * no causality between these two behaviours visible
+
+* as of right now, it does not appear that the models learn to extract the
+  missing attention from the image, but draw it from the source sentence and
+  word probabilities
