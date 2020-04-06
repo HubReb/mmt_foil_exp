@@ -11,7 +11,6 @@ from constants import filepath, filenames
 placeholder = "[v]"
 
 
-ks = [i for i in range(4)]
 vocabulary_file = "new_train.lc.norm.tok.vocab.en"
 
 with open(filepath + vocabulary_file) as f:
@@ -26,13 +25,15 @@ for line in vocab:
 
 
 for filename in filenames:
-    with open(filepath + filename) as f:
-        content = f.read().split("\n")[:-1]
-    new_content = []
-    for line in content:
-        words = line.split()
-        word_index = random.randint(0, len(words) - 2)
-        words[word_index] = random.choice(vocabulary)
-        new_content.append(" ".join(words))
-    with open(filepath + filename.split(".txt")[0] + "_random_replacement.txt", "w") as f:
-        f.write("\n".join(new_content))
+    for k in range(2, 5):
+        with open(filepath + filename) as f:
+            content = f.read().split("\n")[:-1]
+        new_content = []
+        for line in content:
+            words = line.split()
+            for index in range(k):
+                word_index = random.randint(0, len(words) - 2)
+                words[word_index] = random.choice(vocabulary)
+            new_content.append(" ".join(words))
+        with open(filepath + filename.split(".txt")[0] + f"{k}_random_replacement.txt", "w") as f:
+            f.write("\n".join(new_content))
