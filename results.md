@@ -1,5 +1,6 @@
 # top 15 no words
 
+# bis zu index 245 for rem 6 gekommen
 ## 0 - 1
 * 0 generally one "hotspot" per image and far fewer high attention areas per
   word
@@ -26,76 +27,139 @@
 * ironically more words do not necessarily improve translation (see 3 rem to
   4 rem)
 
+### index 17
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| 0 | - | un homme en train de jouer avec des instruments de musique | ein Mann, der mit Musikinstrumenten spielt. |
+| 1 | two | deux hommes jouent au tennis |  two men play tennis |
+| 2 | two young men | deux jeunes hommes jouent au basket | two young men are playing basketball |
+| 3 | two young men| deux jeunes hommes jouant au tennis | two young men playing tennis | 
+| 4 | two young men wrestling | deux jeunes hommes se battant. | two young men fighting. |
+| 6 | two young men wrestling competitively | deux jeunes hommes se battant | two young men fighting |
+| 12 | two young men wrestling competitively | 
+| 20 | two young men wrestling competitively |
+| complete | two young men wrestling competitively |
+
+
+* 0: visual attentions generally low
+    * un is focused of head of one man
+    * homme is also focused on head of the same man but value is lesser
+    * all other attentions have nothing to do with the translation
+* 1: textual: two to deux
+    * visual attentions generally higher
+    * un is focused of head of one man
+    * homme is also focused on head of the same man
+    * jouent is focused on the background and middle of man on the right
+    * tennis is focused on left man's legs,  middle of man on the right, legs
+      of right man and top right background
+* 2: textual: two to deux, young to jeunes, tiniest bit of two to basket, rest
+  among remaining french sentence
+    * visual attention on un jeunes is low
+    * first hotspot is on hommes: right of the first men's face
+    * jouent is on the two men: head to toe
+    * au basket has a hotspot on the left man's legs; basket also has light
+      blue spot right to the left man's face
+* 3: textual: two to deux, young to jeunes, men to hommes, rest distributed over remaining
+  french sentence
+    * deux has red hotspot on left man's middle
+    * jeunes has light blue  on right man's folded leg
+    * hommes as light blue  on right man's head and folded leg
+    * jouant has four light blue spots: left man's leg, under right man's head,
+      right of left man's head and right man's folded leg
+    * au has yellow/red hotspot on  right man's folded leg
+    * tennis has hotspot to the right of left man's head and light blue on its
+      left, on left man's leg and right man's folded leg
+
+* 4: textual: two to deux, young to jeunes, men to hommes,for wrestling: se battant,
+     competitively, rest to remaining french sentence.
+    * deux has red hotspot on the right of the right man (nothing there)
+    * jeunes light blue (all on background spots)
+    * dark blue around the men
+    * se dark blue around the men and light blue on the left man's upper legs
+    * battant:dark blue around the men and light blue on the right man's left
+      leg
+* 6
+    * textual word-word except for wrestling: se battant, competitively
+    * visual: deux has red hotspot on chest of right man
+    * jeunes has yellow-red hotspot on folded leg of right man and light blue
+      on stomach of right man, one blue spot on the background on the left side
+    * hommes: same hotspot as jeunes but yellow and blue on right man's stomach
+      and light blue on left man's stomach, blue on non-folded leg of right man
+    * se: light blue on folded leg, on left man's stomach, blue on right man's
+      left knee and next to left man's head, blue on left of left man on
+      background
+    * battant: yellow spot next to left man's head, blue on right man's
+      stomach, left knee and left man's leg, blue on spot to the left on
+      background
+
+
+
 ### index 252
 
 | model | remaining sentence | hypothesis | translation |
 |-------|------------|-----------------|----------------|
-| 0 rem | - |  des gens marchant dans une rue très fréquentée . |  people walking down a busy street. |
-| 1 rem | man |  un homme en t-shirt blanc marchant sur le trottoir . |  a man in a white T-shirt walking on the sidewalk. |
-| 2 rem | man walking |  un homme marchant dans la rue avec des gens en arrière-plan . | a man walking down the street with people in the background. |
-| 3 rem | man walking down |  un homme marchant dans une rue très fréquentée . |  a man walking down a busy street. |
-| 4 rem | man walking down | un homme marchant dans la rue avec un parapluie . | a man walking down the street with an umbrella. |
+| 0 rem | - |  un homme et une femme sont debout dans un tunnel. |  a man and a woman are standing in a tunnel. |
+| 1 rem | a | un petit garcon joue avec son instrument |   a little boy plays his instrument|
+| 2 rem | a boy |  un garcon joue de la guitare dans une salle de classe . |  a boy plays guitar in a classroom. |
+| 3 rem | a boy is | un garcon est debout à còte d' un feu . | a boy is standing next to a fire. |
+| 4 rem | a boy is folding | un garçon est en train de faire du skateboard dans un bateau . | a boy is skateboarding in a boat. |
 | 6 rem | man walking down street with reflection | un homme marchant dans la rue avec un homme . | a man walking down the street with a man.|
 | 12 rem | man walking down street with reflection in glass | un homme marchant dans la rue avec du reflet en verre | a man walking down the street with glass reflection. |
 | 20 rem |  man walking down street with reflection in glass |  un homme marchant dans la rue avec son reflet en verre |  man walking down the street with his glass reflection...
 | complete | man walking down street with reflection in glass | un homme marchant dans une rue avec un reflet en verre | a man walking down a street with a glass reflection |
 
 
-* more words do not guarantee a better translation (see 4 rem with "umbrella"
-- there is no umbrella in the image
-* 20 remaining words and complete are usually about the same as many sentence
-have less than 20 words
-* similarity of 0 rem and 3 rem is striking
-* unsurpringly, 0 rem has the lowest image attention hotspots and its
-attention is spread all over the image (each word in the sentence has
-another "hot" area (0.030 is highest value))
-* textual information is centered on <eos> (only non-unk token)
-* 1 rem has textual information entirely centered on first token
-* image attention increases to 0.05 and is still spread all over the image 
-* attention values for 0 rem and 1 rem (image) are very similar (heatmap)
-but per word attention is different (hot areas are more focused over
-several words)
-* 2 rem goes down to 0.04 for image attention and focuses most of the
-textual attention on "walking" and some on "man"
-* though there are still several hotspots and the heatmap is still similar
-to 0 rem and 1 rem's, the per-word-image-attention is different
-    * more focused on parts of the image 
-    * only three hotspots and all in the same image part
-    * all other words have far lower image attention than 0 rem and 1 rem
-* 3 rem has high textual attention on first three words and higher maximum
-image attention 0.08
-    * heatmap is still similar 
-    * more hotspots in the image 
-    * different hotspots per word but a few are very close together and follow
-      each other
-    * per word image attention is more similar to 1 rem than 2 rem
-* 4 rem has textual attention distributed over the 4 words, but nearly none on "down"
-    * image attention stops at 0.08
-    * overall fewer high attention spots than 3 rem 
-    * smaller per-word image attention too with only a few hotspots in the
-      sentence
-    * image attention is now centered on the right side of the image
-* 6 rem has textual attention distributed over all 6 words with "man" and
-  reflection firmly black
-    * image attention goes up to 0.10
-    * overall pattern of heatmap similar to before
-    * per-word image attention similar to 4 rem
-    * three hotspots all on the right image side
-* 12 rem has clear textual attention pattern from english to translated word
-    * maximum image attention is now 0.25
-    * heatmap somewhat similar but one hotspot now far higher valued
-    * per-word image attention similar to before but with far higher values
-    * hotspots no longer soly on the right side
-* 20 rem has clear textual attention plot
-    * maximum image attention is 0.14
-    * similar to 12 rem
-    * per-word image attention focusses on the same image parts as 12 rem
-* complete has textual attention pattern as expected
-    * max. image attention is 0.20
-    * pattern slighty different from 20 rem but about the same spots with
-      different values (smaller/higher)
-    * per-word image attention similar to 20 rem but in parts far higher
-      (marchant, dans)
+* no connection between image and sentence for 0
+    * vis. att. mostly focused on boy / different parts of boy
+    * tunnel is bottom left corner
+* 1:
+    * first three words have hotspots
+    * all focus on different parts of the boy
+    * petit on his neck
+    * joue is focused on some part as garcon but with less intensity (bottom of
+      boy)
+    * intstrument focusses on hand of boy
+    * textual maps an <unk> to un
+* 2:
+    * un is light blue on man's legs and boy's face
+    * garcon has hotspot on the boy
+    * joue has two light blue/yellow spots on the boy (hands and feet)
+    * guitare has two light blue spots (boy's face and legs of the woman in the
+      background)
+    * dans has hotspot on boy's feet
+    * une is light blue on the boy's face
+    * salle is light blue on the woman's legs in the background
+    * classe: light blue spots on the boy and the woman
+* 3:
+    * textual attention : a boy mappet to un and boy mapped to garcon
+    * visual attention:
+    * un has attention all over the image
+    * garcon too, with light blue/yellow spot on the left edge of image
+    * est same as garcon, but no brighter spot
+    * debout (standing) has hotspot beneath the boy's legs
+    * à còtè d': very similar light blue spot placing: man's shoes,boy's face
+      left of the man
+    * feu (fire): yellow to red hotspot to the left of the woman's feet on the
+      children on the background
+* 4
+    * textual attention: an boy is mapped; is not; folding is mapped to est en
+      and less so to faire (folding -> is in the process of doing)
+    * un has blue spot on the right side of the boy (nothing there) and dark
+      blue on the man
+    * garçon has light blue under the boy's hands and dark blue on the man and
+      the woman's legs
+    * est has dark blue under the boy's bossom and blue under his hands
+    * en has dark under  the boy's bossom 
+    * train dark blue on the boy's chest
+    * de blue right of the boy
+    * du light blue on the spot between boy and man's legs
+    * skateboard: dark blue on center of image
+    * dans: light blue on man's feet
+    * un light blue on the spot between boy and man's legs
+    * bateau (boat): dark blue on the boy and red hotspot on the bottom left corner
+      (nothing there)
+
+
 
 ### index 138
 
@@ -115,43 +179,73 @@ image attention 0.08
 * rem 0 textual attention as before
    * image attention max. is 0.05
    * again many parts of the image highlighted (heatmap)
-   * per-word image attentio is mostly centered on the lower half of the image
-* rem 1 textual attention all on two
+   * deux shows focus on players faces -> hotspot
+   * hommes is slightly attends players and area around them
+   * tenues (outfits/suits) is clearly focused on the upper half of the
+     players
+        * blanches also, but with hotter point of focus left from them
+        * same for jouent
+        * football has focus on green field beneath them (point of green field)
+* rem 1 textual attention all on two/deux
    * image attention up to 0.12
    * one hotspot but most of the heatmap shows some attention
-   * per word image attention also focusses on the lower half of the image
-   * only one hotspot most is high blue to yellow
+   * hommes again on the people
+   * debout is righ to the two people (standing)
+   * terrain is on the green feald
 * rem 2 textual attention most focussed on the two visible words, but some
   distributed on the unk tokens
    * image attention up to 0.06
    * again most attention on the bottom half
    * per-word attention is always hot on the bottom half
    * also attention on the top half, though only yellow, not red
+   * deux has two hotspots on the left of the left player and one hotspot on
+     the right of the right player
+   * joueurs is light blue-to-yellow on the left of the left player
+   * baseball has one hotspot: on the right edge of the picture on the edge of
+     green/brown
+   * battent has light blue attention on the green bottom
+   -> translation of baseball player is not rooted in image
 * rem 3 textual attention again most distributed on the visible words but
   fitting, few on the unk
    * image attention up to 0.06
    * heatmap very similar to rem 2 (same spots, different values)
-   * per-word image attention no longer just focussed on the lower half
-     (hotspots) but also on the top left ("un")
+   * deux has red hotspot on the two people
+   * jouneurs has red hotspot on the left of the people
+   * baseball has light blue on the green on bottom and top
+   * affrontent has yellow beneath the two players and light blue to their left
+     and right
+   * s' has same as affrontent but no on the right
 * rem 4 textual attention same pattern as before
    * image attention up to 0.06 
-   * different hotspots
-       * more on the left
-       * center gets far less attention
    * per word image attention has less hotspots overall
-       * hotspots are no longer centered on almost one half of the image
-       * smaller hotspots and more focus on the corner of the image (top left
-         and bottom right)
        * center is now only light blue/green
+    * deux has light blue spot on the left edge and on the players
+    * jouners has light blue on the players
+    * de same
+    * baseball has red hotspot on the bottom edge on the green gras (right
+      side)
+    * parlant has some dark blue attention on the players and yellow-to-red
+      spot beneath them
+    * sur same, but less value
+    * un has attention light blue on the left top corner on the grass
+    * terrain has two light blue spots: on on the top left side on the grass
+      and one on the bottom right side on the grass
 * rem 6
    * image attention up to 0.10
    * most on bottom, one spot in center and one in center right (heatmap)
    * overall distribution of attention on heatmap close to rem 4
-   * per-word image attention mostly hotspots on the bottom and bigger than rem
-     4
-   * only word without hotspot is "la" (only light green)
-   * overall more high attention values for every word and only the edges of
-     the hotspot move
+   * deux has red hotspot on the players
+   * joueurs dark blue under the players and on the green field on the top,
+     light blue to the right players right
+   * de dark bleu on and around the players
+   * baseball: dark blue on the players and on their right
+   * parlant : same as baseball but one more dark spot over the left player's
+     shoulder and on the edge green/brown at the top
+   * sur: almost identical to parlant, except dark spot over shoulder 
+   * le: (the) almost no attention on the image, two dark spots : one in the
+     middle (height) on the right side, one on the left edge on the green
+   * terrain: two dark blue spots: one underneath the players, the other at the
+     height of their feet to the left
 * rem 12
    * image attention up to 0.20
    * per-word hotspots more distributed over image 
@@ -200,9 +294,10 @@ image attention 0.08
 * rem 0
     * textual attention as expected
     * image attention up to 0.08
-    * most attention is on the left side of image
-    * per-word attention very low except for "sur", "d'" and "rocher", all have
-      attention on the left side
+    * un is focused on area beneath yellow tent
+    * homme on left part of mountain
+    * rest has very small attentions and no connection output word attention
+
     * heatmap has hotspot in center, most more attended pixels on the left side
       and more small value pickels in center and very few on the right side
 * rem 1
@@ -213,31 +308,42 @@ image attention 0.08
     * nearly every per-word attention is on the left with most of them high
       valued
     * <eos> is exception: center receives a bit of attention
+    * montagne enneigèe has low attention on the montain (wide spread in
+      center)
+    * saut (jump) on one part of left edge of image
+    * un is on the yellow tent
+    * no further connection output word - to attention
     * heatmap has one hotspot on the left center, few light blue in the center
       and many slightly attented pixels in the center and the left.
 rem 2
     * textual attention distributed over pink and sky for all french words,
       more evenly than for rem 1
-    * hotspot in every per word attention image
     * max. image attention is 0.14
-    * overall more attention
     * heatmap
         * one hotspot on the left hand side, one light blue
         * all others distributed over left and center and only slightly
           attended
+    * debout is only hotspot (standing) on the left side, right at the edge 
+    * other words have attention in the same spot, but only light blue at most
 * rem 3
     * textual attention more focussed now (more word to word attentions)
     * image attention max at 0.04 -> greatly decreased
-    * mostly the same pixels with the same attention only the hotspots are
-      entirely missing
     * again most per-word image attention focused on the left side
-    * last two focussed on top left corner
+    * des has only red hotspot on the tents
+    * montagnes has light blue attention on one spot on the left edge
+    * russes  has light blue attention on one spot on the top edge
+    * un has has light blue attention on the tents and more beneath the yellow
+      tents
+    * no similarity between attention spot and output words
+
 * rem 4
     * textual attention slightly less focussed, again only the first few
       translated  words have textual attention
     * image attention at max 0.08
-    * per-word image attention again focus on the left side  with left bottom corner for almost all words
+    * per-word image attention again focus on the left side (lower half) for almost all words
         * attention only differs in strength
+        * some other spots get some attention as well
+        * again no relation to sentence
     * heatmap
         * reflects per-word attention
         * one hotspot on the left
@@ -316,6 +422,12 @@ rem 2
     * most attention is at the top of image
     * per-word attention very low except for "un" and "homme" all have
       attention on the top
+    * un is focused on the monster truck
+    * homme is focused on two different parts of the monster truck (räder)
+    * "assis" is focused on one of the banners
+    * background audience is seen as background building -> attention patterns
+      are on different parts of the background -> ramp, mountain and audience
+      are interpreted as building
     * heatmap has hotspot in left center, most more attended pixels on the center top
       and more 0.02 pickels in center and quite a few on the right side with
       one almost hotspot
@@ -323,19 +435,31 @@ rem 2
     * textual attention not on the one visible word but on "one" (mapped to
       one)
     * image attention up to 0.04
-    * no longer centered on parts of the image rather heatmap has warm spots
-      all over
-    * nearly every per-word attention has its own region of the image
-      highlighted with only "un" (second "un")having none
+    * similar attentions as rem 0, but different values
+    * un is less focused on the truck and light blue, but has yellow spots on
+      bottom left corner and left edge
+    * homme is less focused on truck and has a hotspot on the ramp's edge
+    * est is focused on the truck (light blue)
+    * assis is focused on truck
+    * banc on audience on the right
+    * devant on one part of the audience on the right (yellow)
+    * batiment is focused on ground left of ramp
     * heatmap has three hotspot in center and right hand side
     * attention is more focussed on heatmap
         * more "warmer" pixels but overall fewer highlighted pixels
 rem 2
-    * textual attention has one-to-one mapping for "monster", but "a" has no
-      attention!
+    * textual attention has one-to-one mapping for "monster"
     * hotspot or at least warm area in every per word attention image
     * max. image attention is 0.08
     * overall less attention
+    * un has hotspot beneath the truck
+    * camion has hotspot on the truck (camion)
+    * truck has attention all over the image (dark blue)
+    * est same but more on truck
+    * gare on truck and audience
+    * le has hotspot on the right edge 
+    * trottoir light blue/yellow on the same spot
+    * both have dark blue over rest of image
     * heatmap
         * one hotspot on the top half (center) far fewer light blue
         * still many lighter blue colored pixel
@@ -344,12 +468,31 @@ rem 2
     * image attention max at 0.030 -> greatly decreased, less than image
       captioning
     * mostly similar to heatmap of rem 1 but far more hotspots
-    * attention "cluster" in top left corner, also visible for word images
+    * attention "cluster" in top left corner
+    * un has light blue spots all over
+    * monster has yellow-red hotspot on the truck
+    * truck has light blue on the truck and yellow on the ramp
+    * passe has yellow on the right most part of the audience
+    * devant un bàtiment: all yellow on left part of top banner with batiment
+      having a red hotspot on top edge on one of the trucks wheels
+    * bleu has yellow hotspot on yellow banner on the right (blue)
 * rem 4
     * textual attention far more  focussed, again only the first few
       translated  words have textual attention
     * image attention at max 0.07
-    * per-word image attention again focus on the left side  with left bottom corner for almost all words and others top left corner
+    * un monster truck has no focus on the truck
+    * vole (flies) light blue on the left of the truck and on the bottom left
+      corner
+    * dans light blue on the bottom left corner and dark blue on the top left
+      corner
+    * les (the) light blue over the audience on the right most side
+    * airs (Air) ight blue on the bottom left corner deep blue on the audience
+    * pour (to) red hotspot on the left most audience (image edge)
+    * faire (make) light blue on the top most wheel of the truck, deep blue on
+      the lowest wheel of the truck
+    * une blue on two spots: one at the start of the ramp, one on the banner in
+      the background on the left
+    * figure: same pattern as monster truck
     * heatmap
         * reflects per-word attention
         * one hotspot on the left bottom
@@ -417,6 +560,85 @@ rem 2
   easier?
 * it takes the complete sentence to get most of the translation right, yet both
   12 and 20 still translate balls with ballons (?)
+* 0:
+    * des is focused on the people in the background with hotspot on the right
+      half of them
+    * same for gens ("people")
+    * marchent on legs 
+    * sur ("on") on the feet touching the ground
+    * un trottoir is focused less and on more parts of the image
+        * partly on the building on the background
+        * mostly on the feet touching the street
+* 1
+    * pluesieurs is focused on the people in the background with hotspot on the left
+      half of them
+    * same for personnes ("people"), but with less intensity
+    * marchent on legs 
+    * sur ("on") on the feet touching the ground
+    * un trottoir is focused less 
+        * mostly on the feet touching the street
+* 2
+    * pluesieurs is now one hotspot on a few people in the background
+    * enfants has dark blue over the people in the background
+    * jouent has dark blue over the people in the background and one light blue
+      spot over the legs of one person at the right edge of the image
+    * football has light blue hotspot over the legs of one walking person in
+      the middle of the picture
+    * un has hotspot on the bottom left corner in which nothing is shown
+    * terrain has two light blue dots on two peoples walking legs
+    * jeu has them in the same spots as terrain but with less value
+* 3
+    * pluesiers has one hotspot on the right on one person's legs and light
+      blue on the people on the background
+    * enfants: light blue on the background
+    * jouant light blue on the background but with more value on their legs
+    * hockey: hotspot (jellow to red) on the girl's legs in the foreground, light blue on the
+      people left from her in the background
+    * terrain: red hotspot on the people left from her in the background
+* 4
+    * plusiers: dark blue on the people in the background on the right, light
+      blue on the people in the background on the left
+    * enfants: dark bleu on the girl in the front, lighter blue on the middle
+      of the people on the background
+    * jouant: one blue spot on the aspahlt on the left, one on the people in
+      the background on the left, dark blue on the people in the background on the 
+      right
+    * sur: red hotspot on the same asphalt spot as jouant
+    * une again asphalt spot in light blue and light blue on the bottom right
+      corner
+    * balançoire (swing): on the leg of the people walking past and beneath the
+      girl on the front (on her right)
+    * par : same light blue spot as enfants
+    * une: dark blue on the girl in the front and the leftmost woman walking by
+    * journèe (day): blue on the building in the back
+    * ensoleilèe (sunny): blue on the building in the back and light blue on
+      the most left people in the background
+* 6
+    * plusieurs: light blue spot on the left beneath next to the left most walking woman,
+      blue spots on the right side on the right most person walking to the
+      left, on the heads of the people in the background, dark blue on the
+      street on the up arrow
+    * enfants: light blue on the second woman walking to the right, blue from
+      that spot to the people standing in the background and covering them 
+    * jouant: yellow on the woman walking to the right
+    * sur: yellow to red right from the girl in the front, blue on the legs of
+      the right most woman walking to the right, blue on the other women
+      walking to the right and on the ground left of them
+    * un: red hotspot on the left bottom corner, light blue to yellow on the edge of the
+      building in the back
+    * terrain: edge of the building now blue, bit higher (height on image) than for previous
+      word, light blue on legs of women walking to the right and on and next to
+      the legs of the girl
+    * de: light blue on the up arrow, yellow/blue spot of un is now blue, people in
+      the background are dark blue (left side and center)
+    * tennis: yellow to red on spot right to the girl's legs at the front and
+      beneath the legs of the person walking to the left, light blue from top
+      of that spot to the middle of image over the legs of the woman walking to
+      the right (right most woman walking to the right)
+
+
+
+
 
 
 ### index 140
@@ -474,8 +696,15 @@ rem 2
     * textual attention as expected
     * visual attention maxes out at 0.05
     * per-word attention is centered in the middle of the image
-    * hotspots is always in the bottom right corner
     * later words have attention on the right
+    * "une" is focused on the woman and surrounding background
+    * personne gives attention to area surrounding woman and edge of parked
+      cars on the right
+    * "en" is hotspot in bottom right corner - where nothing is
+        *  - marchant has exact same pattern
+    * t-shirt focuses on edge of parked cars on the right
+    * rue highlights edges of street (buildings and cars)
+
     * red at "en" and "marchant"
     * heatmap
         * reflects this
@@ -487,11 +716,17 @@ rem 2
 * rem 1
     * textual attention mostly on the first three english tokens
     * most attention on first unk token to "une"
+    * more focused than rem 0
     * difference from person to woman is striking and as of yet not explained
       (maybe more woman in training data k=1?)
     * image attention shoots up to max 0.2 (x4!)
-    * per-word attention again centered in the middle with bottom right corner
-      as hotspot for "la" and "rue"
+    * most per-word attention is on the woman 
+    * "un" is hotspot
+    * femme is on woman
+    * en and t-shirt as well but with higher value (yellow)
+    * rouge is hotspot on woman
+    * marche light blue to the left of the woman's legs
+    * la rue is focused on the reifen of front right car
     * later words have attention on the right
     * heatmap
         * has hotspot in the middle of image (nearly all per-word image
@@ -501,18 +736,14 @@ rem 2
         * overall structure similar to rem 0; difference in coloring stems from
           different total attention
 * rem 2
-    * greatly different to rem 1
     * textual attention is on "woman"-"femme" and first "<unk>"-"une"
     * "a" has no textual attention to any french word
     * image attention has a maximum of 0.04 (1/5 of rem 1)
-    * per-word image attention is closer to rem 0 than rem 0
-    * focus of image attention is now the right half of the image
-    * first hotspot is top right corner ("une")
-    * all other hotspots are bottom right corner and cover about one quarter of
-      the entire image 
-    * only words with non-hotspots are "femme" and "en" (only green to yellow
-      on the right side of the image
-    * "." and "<eos>" have light blue to green in top left quarter
+    * une and femme is now light blue on a building on the right
+    * en is now a light blue / yellow spot to top right of woman
+    * veste is now on center and right cars' edge
+    * noire is on woman and more (red hotspot) in bottom right corner
+    * trottoir is on various parts of the street before the woman (light blue)
     * heatmap
         * similar to rem 0
         * more yellow (0.03 pixels) generally in the center and the right side
@@ -525,11 +756,21 @@ rem 2
     * max. image attention at 0.06
     * per-word attention is actually different for each word both in value and
       region
-    * most words have one quarter to half of the image covered in light blue to
-      green
-    * two yellow ("une" (bottom right half, about one fifth of the image), "une"
-     (bottom right corner, one third of the image is covered))
-    * one hotspot: "dans", bottom right corner
+    * une has red hotspot on right edge (nothing there)
+    * femme is light blue/yellow on the left of the woman
+    * marchant is around the woman in dark blue
+    * dans is light blue on the cars on the right front
+    * une is light blue on a car on the right
+    * rue (street) is light bue on the cars on the left and darker blue on the cars on
+      the right
+    * tres has same attention as femme
+    * frequentèe (frequentation) is light blue on the left of the woman lighter
+      blue on one spot on the building on the right side
+    * avec same as rue
+    * bàtiments: dark blue behind the woman and on foremost right car, light
+      blue on the building on the right (buildings)
+    * en arrière-plan: dark blue on the sky and light blue on the same building
+      spot
     * heatmap
         * one hotspot in the top right quarter (most of the words have some
           attention there)
@@ -541,12 +782,24 @@ rem 2
     * textual attention on first five tokens
     * mapping "a"-"une" for the first time
     * mapping "woman"-"femme", "walking"-"marchant" and "<unk>"-"dans"
-    * visual attention is odd
     * max. image attention at 0.05
-    * most per-word image attentions have no attention _at all_
-    * only image attention is at "batiments"
-    * hotspots covers bottom half of image with only left corner yellow
-    * top right corner is entirely light blue
+    * une has light blue on the building on the right and dark blue on the cars
+      and blue in the sky
+    * femme has same light blue spot as une but smaller, dark blue on the cars
+    * marchant: dark blue on the edge left building/sky and the cars
+    * dans dark blue on the cars, right car at the front has blue spot
+    * une: red hotspot on the bottom edge next to the foremost right car
+    * rue: blue on the foremost right car
+    * bordèe (lined) has attention on a car on the left (2nd), right building
+      has light blue spot
+    * de same as bordèe (bul
+    * grands : blue on center, bottom end of building, dark blue on left
+      foremost car
+    * bàtiments: dark blue on left side of picture, small light blue spot on
+      the building on the right
+    * de:  same as femme, but no attention to the left side 
+    * coleur: same as marchant
+    * vive same as marchant
     * heatmap
         * somewhat reflects per-word attention
         * hotspot is in top right quarter
@@ -626,8 +879,68 @@ rem 2
     * again, the first few words actually make the translation _worse_
     * again, even giving the words does not mean they are translated correctly
       (rem 12)
-    * again, the image attention is all over the place 
     * again, good example of it not working
+* 0:
+    * deux is focused on womans face
+    * personnes is focused on parts of the woman and on her stuff next to her
+    * assis is focused on the parts of the rock under the woman
+    * rocher is ironically focused on the ocean over the rock
+    * "sacs de securite" is focused on the small white sandals
+    * "lunettes de soleil" : lunettes over face of woman (not on!), other two
+      make no sense
+* 1
+    * far less hotspots than 0
+    * un is hotspot on woman's face
+    * vieil is light blue on woman's face and spot on upper right leg
+    * homme is hotspot on towel on the ground
+    * t-shirt is on woman's hand
+    * rouge is on towel
+    * bord is light focused on water
+    * eau (water) is hotspot on upper right corner
+    * rocher same as rem 0
+    * est assis sur barely have any attention on anything
+* 2
+    * two hotspots
+    * un homme age  all have light blue attention on the woman's face
+    * un has hotspot (red) on the woman's hand on the rock
+    * chapeau (hat) is a red hotspot on the woman's face
+    * de same as first 3
+    * sauvetage (rescue) dark blue over the woman and bit lighter on the water
+    * et yellow on the woman's face
+    * chapaue same as first three
+    * natation two light blue on the water, dark blue over the woman
+    * sur same as f.t.
+    * bateau (boat) two lighter blue spots on the water
+* 3
+    * une femme only dark blue attention on the entire woman
+    * àgèe dark blue attention on the entire woman with light blue/yellow
+      hotspot on her feet
+    * en: two darkblue on the woman, one lighter blue on the towel
+    * robe: two light blue: woman's face and feet
+    * rose: red hotspot on the blue towel under the woman
+    * assise: red hotspot on the blue towel under the woman (same as rose)
+    * rocher: same as always
+    * dans l' eau: on the water with eau one light blue spot in the top right
+      corner
+* 4
+    * une femme àgrèe robe en barely any attention some small spots on/next to the
+      woman
+    * rose: light blue on bottom half of bikini
+    * est: blue on towel woman is lying on
+    * assise: blue on towel woman is lying on and under her feet
+    * sur: slightest attention on sandals 
+    * un: light blue on her sandals
+    * rocher: red hotspot in bottom right corne
+    * avec: blue under her blue towel under her arm
+    * des: no attention
+    * fleurs (flowers): barly attention over woman's sandals and bottom right
+      corner
+    * et: barest attention to the bottom left corner
+    * des: barest attention to the sandals and bottom left corner
+    * vètements (clothes): same as fleurs but no corner
+
+ 
+
 
 ### index 869
 
@@ -656,6 +969,65 @@ rem 2
   complete of 0.175
 * greatest difference between the heatmaps is their value, not their warm
   pixels - though rem 1 is the one model that does not have the center top warm
+* 0:
+    * un homme is on boy's face
+    * une hotspot on boys legs
+    * attention very similar to 1, only slightly different values (most likely
+      due to lower max)
+* 1:
+    * un is hotspot on boy's face
+    * homme same spot light blue
+    * avec is beneath scateboard and slightly on boy
+    * chemise very few attention on boy
+    * most of the words have attention on the boy
+    * assis is on the ground  (seated)
+    * banc is on the ground around the right side of the skateboard
+    * park is on ground and door
+* 2
+    * un is hotspot on boy's face 
+    * homem is lightblue spot on the left of the boy's face
+    * tres agè both on the boy in light blue
+    * avec light blue left of the boys face
+    * un lightblue on the boy
+    * t-shirt: boy's shoulder on the right in light blue
+    * blanc: yellow on boy's upper half (white)
+    * un lightblue on the boy
+    * jean: same as t-shirt with smaller value
+    * rest same as before
+* 3
+    * un blue attention on the boy
+    * très dark blue on the boy
+    * jeneu bleu over the boy's head
+    * garçon: dark blue on the boy's head
+    * en: red hotspot on the bottom left edge
+    * costume: light blue to the boys's left, blue on the boy
+    * camouflage: light blue on the bottom left edge (same spot as en), dark
+      blue on the boy
+    * banc dans un parc: as before
+    * est: light blue on the left side of the doorstep
+    * assis: left side of the ground in dark blue
+    * sur: dark blue on the door edge
+
+* 4
+    * un: red hotspot on boy's chest
+    * très (very): blue attention on left door side
+    * jeune (young): blue attention on left door side, left door frame and
+      under the boy's feet
+    * garçon: dark blue attention directly over the boy's head
+    * est: dark blue over the boy's head and right of the skateboard
+    * assis: dark blue/blue right of the skateboard
+    * sur: blue over the boy's head on the left dark blue over the boy's head on the right
+    * un: blue on the skateboard
+    * banc: dark blue on the left door side and on the right edge (bottom)
+    * devant (in front of): top of left door side in blue
+    * un: dark blue on the boy
+    * mur (wall) : bottom spot on the door
+    * recouvert (covered): same as devant, but spot on door is brighter
+    * de: dark blue over the boy, the door and the left edge of the wall and
+      left side of bottom
+    * graffitis: blue on the left side of the door
+
+
 
 ### index 30
 
@@ -677,24 +1049,64 @@ rem 2
 * textual attention is word-to-word right from rem 1 - no surprises here
 * rem 3 and rem 4 have the smallest maximum image attention (0.05 and 0.04, rem
   0 has 0.08)
-* most hotspots are on the bottom left quarter (where the two people are)
 * differences in heatmaps is once again mostly for differences in given
   attention, only a few spots of where attention is given change
-* rem 3 and rem 4 have lower max image attention and change the location of the
-  hotspots more often 
-* rem 3
-    * not just lower left
-    * rem 3 has lower left for the first 4 words, then lower right for "la",
-      then again lower left and ends with bottom (all three very low attentions)
-* rem 4
-    * starts with top (hotspot)
-    * then lower left (hotspot)
-    * lower left (yellow)
-    * lower left (light blue)
-    * top left corner and right edge (light yellow)
-    * bottom right (light yellow)
-    * bottom left (light blue)
-    * left edge (light blue)
+* 0:
+    * deux is focused on a fissure in the ground instead of the two people and
+      is only red hotspot all others are at best light blue
+    * chiens is focused on the two people but labels them as dogs
+    * neige (Schnee) is focussed on various parts of the sand
+    * hotspots change per word
+    * courent is focused on one spot on the ground (plants)
+* 1: 
+    * deux is focused on the two people
+    * chiens too
+    * se battent focused first on the people than on the ground to the lower
+      right
+    * plage (beach) is focused directly on the gronud beneath the two
+* 2:
+    * deux personnes is on the two people but no longer a hotspot
+    * font is light blue on one spot of the plants at the bottom
+    * du has nearly no visual attention
+    * ski is hotspot on second person
+    * neige has light blue attention on the second person and the top half of
+      the image (dark blue)
+* 3:
+    * deux has hotspot on left edge of image (nothing there)
+    * personnes has one person in light blue/yellow, one rift in light blue 
+    * marchant is light blue on persons
+    * dans has several dark blue spots on the image
+    * la has hotspot (red) on right side of image ; just sand there
+    * neige has light blue/yellow spot on left edge and darker light blue
+      beneath the two persons (neige=snow)
+* 4
+    * deux has hotspot on the water
+    * personnes has light blue on the people, but lighter blue on the birds to
+      their left
+    * marchant light blue on the same birds as before and lighter blue on
+      a bird to the people's right
+    * sur has various lighter blue spots on the image (birds left, bird right,
+      beneath people, right top on the water
+    * la has two red hotspots: both edges with no adressed content
+    * plage has two light blue spots: beneath the people on their right, and
+      same spot as one of la hotspots and darker blue spots on the beach
+* 6
+    * deux has hotspot on the right edge on end water on the sand (right side
+      of image), light blue spot on the people, dark blue on the rinnsal from
+      water to sand, part of the sand on the right and bottom right corner
+    * personnes has light blue on the people and next to the bird on the right,
+      blue on the bird to the left
+      dark blue on the beginning of the water (two spots)
+    * marchant: red hotspot on the people, blue on the bird on the right, blue on
+      the bird to the left, dark blue on the beginning of the water (two spots)
+    * sur: yellow spot beneath the people to the right, light blue on the birds
+      to their left, dark blue on the bird to their right
+    * la: light blue on the hotspot of deux, blue between the people and the
+      bird to the right, dark blue on the plants beneath the birds to the left
+    * plage (beach): blue on the left edge on the sand beneath the water and
+      between the people and the bird to the right, dark blue on the bird to
+      the left, on the sand beneath the water right of the rinnsal, and in the
+      light blue spot of la
 
 
 ### index 546
@@ -719,15 +1131,54 @@ rem 2
 * image attentions differ from index 678
 * most of the hotspots are in the top right corner of the image 
 * again the complete model has max.im.att. of 0.175 while rem 20 has 0.20
-* rem 0 - rem 3 have their hotspots all in the top right corner with a few
-  yellow, but mostly light blue areas in the center, top right and bottom right
 * both rem 0 and rem 20 have the most hotspots (5)
-    * all in top right corner
-* all models except the complete have their attention mostly on the right side
-  of the picture
-    * the complete model focuses its hotspots on the top left corner - where
-      only a wall is (useless)
-    * top right has the face of the girl
+* 0:
+    * un is hotspot ("red") focused on girls face
+    * homme is just yellow and mostly focused on girls face
+    * en focuses on wall right of girl
+    * veste even more so
+    * rouge even more so (at least wall is red)
+    * joue on bottom to the left of girl
+    * guitarre is last yellow spot, same spot as jouent, but attention goes up
+      to half of image and the to girl's face
+* 1 
+    * un focused on girl's face
+    * homme is on the background to the right of the girl
+    * costume is on her neck (yellow)
+    * joue same spot as costume, but less intensity
+    * guitarre is light blue, same spot as jouent, but attention goes up
+      to half of image and the to girl's face
+* 2:
+    * un focuses to the right of the girl's face on the background
+    * femme light blue/yellow on the girl's face
+    * en blue/yellow on the girl's face and little attention left to the stick
+    * robe same es en
+    * de hotspot in top right corner
+    * colour on the girl's clothed neck
+    * vive light blue on the girl's face
+    * joue de la guitare: same as 1 and 0
+* 3
+    * une light blue on the right of the girl's face on the background
+    * jeune light blue over the girl's head
+    * fille: hotspot yellow-red over the girl's head (same location as jeune)
+    * en : yellow same spot as last two
+    * robe: light blue on the stick and the girl's neck
+    * rouge: right edge of the image (on red background)
+    * tient (holds) same hotspot as en
+    * une: yellow on top down to girl's head
+    * balancoire (swing): light blue on the top edge of the image over the stick
+* 4
+    * une blue next to the head of the girl (right) and right of her right arm
+    * jeune dark blue on the girl's head and neck and next to the stick on the
+      left
+    * fille same as jeune but without the head
+    * joue light blue over the girl's head
+    * sur dark blue on the girl's head, right edge and left of her stick on top
+      and bottom
+    * un; light blue above the hand holding the stick on the stick
+    * terrain: dark blue left to the stick
+    * de: red hotspot on the bottom on the left side of the girl 
+    * jeux (games): light blue left of the stick on the bottom
 * heatmaps mostly differ in the value of attentions
     * exception is complete model: attention is transfered from right side of
       image to left side
@@ -841,65 +1292,12 @@ rem 2
 * image attention drastically different for each model, hardly anything in
   common
     * rem 0 has maximum image of 0.07
-    * each model has different regions of hotspots and a different number of
-      hotspots
-        * rem 0:
-            * 4 hotspots:
-                * top left x1 ("deux")
-                * 3x bottom right("des", "chaises", ".")
-            * three yellows
-                * 1x bottom left ("hommes")
-                * 2x bottom right("travaillant", "sur")
-        * rem 1:
-            * 1 hotspot (top left)("un")
-            * 3x yellow 
-                * left, bottom right
-                * top right ("homme", "manger", ".")
-        * rem 2:
-            *  4 hotspots
-                *  "sur", bottom right quarter
-                * "un", bottom right corner
-                * "projet" , top right corner
-                * <eos> top right corner
-            * 2 yellow 
-                * "un", bottom left
-                * "moyen", top right quarter
-            * rest has varying light blue green shades
-        * rem 3:
-            * 1 hotspot ("<eos>", top right corner)
-            * no yellows
-            * only light blue/green for 4 words
-        * rem 4:
-            * 1 hotspot ("son", bottom left corner)
-            * all other words are yellow/green most of it in center of image to
-              top right and bottom left corner
-        * rem 6:
-            * 4 hotspots 
-                * "un", bottom right corner
-                * "à", entire right half of image
-                * "." top right corner
-                * "<eos>" top right corner to top right middle
-            * all other are yellow/yellow-to-orange (either center or bottom
-               right - 1 bottom left)
-        * rem 12:
-            * 2 hotspots
-                * "voici", bottom left corner
-                * "art" top right corner
-            * all light blue and one yellow ("en", top right corner-to-quarter)
-        * rem 20:
-            * 3 hotspots 
-                * "des", bottom right corner
-                * "effectuent", top right corner
-                * "." top right corner
-            * all others are yellow
-        * complete:
-            * 2 hotspots
-                * "des" top right to middle right
-                * "une", top right to middle right
-            * two yellow
-                * "œuvre" top right corner
-                * "art" top right corner 
-            * all others are green to yellow
+        * deux is focussed on face of the woman and on her hands -> seen as
+          different entities
+        * hommes is less focussed on faces, more on her hands and upper arm
+        * travaillant is focused on face, hand and paper on the desk
+        * focus switches to picture/paper on the table -> only hotspot in all
+          words and is translated as chairs
         * heatmaps reflect this
             * center spots and top right quarter are generally colored warm
             (except rem 0 - no right top quarter), though to varying
@@ -907,6 +1305,43 @@ rem 2
             * all others depend on points written above
             * up untit rem 12 the center right spots are also given similar
               amounts of attention
+    * 1:
+        * un homme is focused on neck of woman
+        * train on background to her right
+        * manger (eats) on the korb on her right
+        * livre barely any attention to various parts
+        * restraurant gives few attentions to background, part of table on korb
+        * no connection attention to sentence for more than the first two words
+    * 2: 
+        * most visual att. is focused on the woman
+        * un on woman's face and light blue (more att.) on the right background
+        * homme is on woman and background
+        -> translation more routed in linguistic information
+        * age is focused on woman's face (red hotspot)
+        * moyen has hotspot on part of the window
+        * travaillant is light blue on the womans face
+        * un is on woman's hands
+        * projet is on woman's face (project), hotspot and light blue on same
+          spot of window again
+    * 3:
+        * des hat hotspot on window
+        * chefs has light blue on the woman's hands, darker blue on her face
+        * chefs has light blue on the woman's face and the edge of the korb
+        * preparant has dark blue on the woman's hands
+        * la has hotspot next to the  woman's hands
+        * nourriture has light blue on face and right of hands
+        * restaurant has dark blue on the window and beneath the woman's hands
+    * 4
+        * image has blue spots all over the image but no translation image
+          connection
+        * son has hotspots on the woman's hands (his)
+        * travail (work) has blue on the woman's hands but more on the window
+          in the background
+    * 6
+        * un has red hotspot on the woman's hands
+        * rest of the sentence has light blue spots on various parts of the
+          woman and the window
+        * again no connection image attention translation
 
 ### index 948 
 
