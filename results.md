@@ -1,6 +1,5 @@
 # top 15 no words
 
-# bis zu index 245 for rem 6 gekommen
 ## 0 - 1
 * 0 generally one "hotspot" per image and far fewer high attention areas per
   word
@@ -1892,6 +1891,309 @@ rem 2
 
 # random replacements
 
+
+## index 17 
+
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| random | two young men john. competitively | deux jeunes hommes font une cours | two young men are taking a class |
+| random4 | senor rounded men films competitively | deux hommes en tenues de camouflage jouent au basket |  two men in camouflage uniforms are playing basketball. |
+
+* replacement of verb is enough to take model of track. two young men are kept,
+  but pompetitively is thrown out for "taking a class"
+    * john is mapped font (do)
+    * competitively to une cours (a class)
+* visual attention does not explain translation, though some are quite close to
+  those of complete and k=20, there are enough differences to warrant
+  a difference
+    * deux has red hotspot on right man's folded knee (similar to deux of k=20)
+    * jeunes has light blue between right man's folded knee and left man's legs 
+      (similar to k=12 jeunes)
+    * font: has light blue in same spot
+    * une: has hotspot between right man's legs
+    * cours is light blue to yellow on left man's knees (similar to complete's
+      entrainment)
+* difference in translation not caused by visuals
+* 4 replacement is similar to k=2: both are about men playing basketball
+* textual attention is all over the place:
+    * senor is mapped to deux
+    * rest is grey in grey and only <eos> is the only word-word mapplng
+* visual is far less certain
+    * deux has light blue on left man's knees and between right man's legs;
+      dark blue on left man's upperbag and over his head with blue right of his
+      head
+    * hommes is light blue between right man's legs, blue on left man's
+      upperbag and over his head with blue right of his head and dark blue over
+      the right man's back
+    * en is ight blue on left man's knees and on right man's folded legs and
+      his stomach, dark blue between their bodies and over their backs and next
+      to their heads
+    * tenues (outfits) has light blue on right man's folded leg and blue 
+      between their bodies and on left man's upperbag and dark blue right of his head
+    * de red hotspot on right man's folded leg and dark blue between their
+      bodies and above right man's back  and dark blue right of left man's head
+    * camouflage: blue on left and right man's right legs, dark blue between their
+      bodies and above left man's back  and dark blue right of left man's
+    * jouent: light bleu between their bodies and on left man's knees and right
+      man's folded leg
+    * au: red hotspot on left man's knees and dark blue on right
+      man's folded leg
+    * basket: light blue to yellow on left man's knees and blue on right man's
+      stomach
+
+## index 30
+
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| random4 | two melting one-man on pulleys beach | deux chiens jouant sur la plage | two dogs playing on the beach |
+
+* again, translation is close to k=2
+* model has learned to ignore most of the text
+* textual attention show clear attention on two - deux and beach - plage
+* otherwise mostly grey, but on-sur is dark grey
+* visual:   
+    * deux is light blue on people, left birds and right bird
+    * chiens: red hotspot on the people, again similar to k=2
+    * jouand: light blue on the left birds and dark blue right of the right
+      bird
+    * sur: dark blue on the people, left birds and above both
+    * la: blue on the left birds and right bird and dark blue beneath the
+      people
+    * plage: dark blue beneath the left birds and the people, above the birds
+      and on the water in the middle of the image and 1cm beneath that
+
+
+# only looking at the visual attention on replaced words from hieron
+### index 138
+
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| random 4 | cranky baseball players manure on the field. | deux joueurs de baseball marchent sur le terrain |  two baseball players are walking down the field |
+
+
+* textual attention word-word, wrong words have word-word translation, some
+  correct (cranky - deux)
+* position of verb is recognized (manure - marchent)
+* translation reveals not quite understanding
+* visuals:
+    * deux: has yellow to red hotspot on the left of the left player on the
+      grass and light blue right of the right player on the right
+    * marchent: red hotspot beneath the right player with dark blue left of the
+      left player and on the top edge on the right side
+
+## index 245
+
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| random 4 | mustache becomes playing on a court with balls . | une femme jouant sur un court avec des balles |  a woman playing on a court with balls. |
+
+* textual attention is very certain (almost or black) except for the first two
+  words
+* visual has two hotspots on the first replaced words:
+    * une: has red hotspot on the rightmost woman walking to the rigt and
+      yellow on the leftmost group of people in the background
+    * femme: has red hotspot on the leftmost group of people in the background,
+      blue on the women walking to the right and in the bottom right corner
+* correct translation is more look than anything
+* v. a. shows no definite reason why the correct word was chosen
+
+## index 252
+
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| random 4 | swifter scrap blender folding paper in <unk> ground . | une femme lisant un journal en bois dans le sol | a woman reading a wooden newspaper on the floor. |
+
+* when in doubt, start with a woman?
+* textual attention shows certainty in translating paper and ground
+    * dark grey for swifter-une, scrap-ẁoman
+    * uncertainty for translationg blender, otherwise grey for 2-3 words
+* visual is very certain
+    * une has light blue for the boys face and the bottom left corner
+    * femme: blue for beneath boy's bossom, right of his shoulder and next to
+      the woman's legs in the background
+    * lisant (reading): has red hotspot on the man's shoes to the left
+    * bois: has light blue on the boys's chest and dark blue 
+      on the man's shoes to the left
+    * dans: has blue on the boys's chest, dark blue on on the man's
+      shoes to the left
+* again translation - visual is quite different
+
+## index 546
+
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| random 4 | a young gees is japanese avrovulcan.com large roller-skating while performing . | un jeune garçon est dans une grande machine en carton. | a young boy is in a big cardboard machine. |
+
+
+* again, quality of translation is reminiscent of k=2
+* textual attention is very certain
+    * first 3 words are black one-one
+    * large-grande too
+    * rest is grey, but still most word-word with une and carton the only light
+      grey ones
+* visual: 
+    * many hotspots
+    * un again red hotspot above the girl's head with yellow to the right edge
+    * jeune: red hotspot in the former yellow's place
+    * garçon: same as jeune
+    * est: same as jeune
+    * dens: hotspot is yellow to red  now
+    * dans: hotspot is yellow now and left of girl's forearm is dark blue
+    * une: light blue to yellow at the top edge over the girl's head; dark blue
+      on her left shoulder and left of her hand on the stick down to the ground
+    * grande: light blue right of her face, blue on her left shoulder and left
+      of the bottom end of the stick
+    * machine: light blue on her left shoulder and left of the bottom end of the stick
+    * en: light blue on her neck and dark blue at the spot of the hotspot of un
+    * carton: blue on her neck and left of her hand on the stick
+
+## index 655
+
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| random 4 | pink keg on a snowie onesie finale tents on a platform | des gens debout sur une pente enneigèe avec des tentes sur une plate-forme.| people standing on a snowy slope with tents on a platform.  |
+
+* quality actually higher than for ablations
+* unfortunately, attention hotspot yellow to red is always in the same place or
+  slightly higher
+* textual attention is word to word with a few grey areas - both original and
+  replaced words
+* no causality between visual and translation
+    * pente (slope): dark blue over almost all of the image
+    * gens (people): yellow on the orange tent
+
+
+## index 678
+
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| random 4 | a monster atyl-atyl flies slouched down supervise a mound of dirt | un homme en bleu descend un pont de terre .| a man in blue comes down a dirt bridge .  |
+
+* again, close to k=2 performance, but last few words are translated wrong
+* textual attention is mostly very weak
+    * only a and dirt have black word-word
+    * most as various degrees of grey and 2-3 words attended to
+    * a mound of has the weakest attentions
+* virtual is distributed over the image
+    * un: red hotspot on the left plane/advertisement, blue on the low end of
+      the truck and dark blue on its upper wheel and left of the truck
+    * homem: yellow next to the truck (left) and on the left upper wheel, dark
+      blue on the edge grey/yellow plane on the right and in the bottom left
+      corner
+    * en : light blue next to the truck (left), blue on the left plane/advertisement,
+      dark blue right of the ramp and on the bottom left
+      corner
+    * blue (blue): light blue next to the truck (left),  dark blue on the right
+      audience over the grey area and blue at the left end of the ramp
+    * descend: light blue next to the truck (left), blue on the bottom below 
+      the left end of the ramp, dark blue on the right edge grey area/audience
+      and on the advertisement right of the ramp
+    * un: light blue to yellow on the bottom below  the left end of the ramp,
+      dark blue on the left plane/advertisement, on the right edge grey area/audience,
+      right top end of the ramp
+    * pont: dark blue on the left audience, on the right edge grey area/audience,
+      on the bottom below the left end of the ramp
+    * de: blue on the edge grey/yellow plane on the right, on the left audience,
+      on the left plane/advertisement, left top edge of the ramp, on the bottom below 
+      the left end of the ramp
+    * terre: light blue next to the truck (left), blue on the bottom below 
+      the left end of the ramp, dark blue on the edge grey/yellow plane on the right
+      and beneath the truck
+
+## index 706
+
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| random 4 | a woman walking motioning wakeboard laying lined pope cars in the dark | une femme marchant en haut d' une rue bordèe de voitures en arrière-plan.  | a woman walking up a street lined with cars in the background. |
+
+* works!!!!!
+* textual attention is certain on the first three words and cars, but all else
+  is grey
+* laying lined pope has next to no textual attention
+* visual looks good too
+* en haut is focused on the street
+    * en has two yellow to red hotspots one beneath the woman one on the 1st
+      car on the right
+    * haut has two yellow spot one right of the woman, one beneath her and one
+      light blue on the first car on the right
+* une has light blue on the last car on the left and the spot on the right
+  building, blue beneath the woman
+* rue has yellow to red  spot on the first car and blue on the spot on the
+  building on the right, dark blue on the building's 0 floor on the left
+* bordèe: has light blue on the spot on the  building on the right, blue on
+  spot on the first car, on the last car on the left and beneath the woman
+* de has light blue on the last car on the left, blue  on the spot on the
+  building on the right, dark blue on the 1st car to the left and right
+* voitures: has light blue on the last car on the left, dark blue 
+  on the 1st car to the left and right and beneath the woman
+* en: yellow to red hotspot on the last car on the left, blue on the spot on the
+  building on the right and dark blue beneath the woman
+* arrière-plan: yellow on the bottom left corner, dark blue beneath the woman,
+  on the 1st car on the right and on the spot on the building on the right
+
+## index 829
+
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| random 4 | an older woman in a bikini monument sunbathing on a rock nobody diplomas snowboarding | une femme àgèe en bikini bleu se penche sur un rocher en pierre avec des planches de surf. | a woman in a blue bikini leans over a rock with surfboards. |
+
+* textual attention is higher than the previous example
+    * black: an, older, woman, sunbathing
+    * dark grey: bikini, on, a, rock, nobody, diplomas, snowboarding
+    * no total loss of textual attention
+* visual: looking at the replacements
+    * monument -> bleu 
+        * blue on the towel (blue towel) the woman lies on and dark blue on the
+          red towel beneath her
+    * nobody -> (rocher) en pierre
+        * rocher: dark blue on the stone beneath the left sandal, beneath the
+          white towel and on the ocean above the woman's stomach
+        * en: light blue on the bottom left edge of the red towel
+        * pierre: dark blue beneath blue towel beneath the woman's upper arm
+          and under the red towel
+    * diplomas snowboarding -> avec des planches de surf
+        * avec: dark blue on the blue towel beneath the woman's forearm,
+          beneath the red towel, beneath the sandals
+        * des: light blue on the blue towel beneath the woman's forearm, dark
+          blue on the left sandal and under the red towel
+        * planches: dark blue on the left sandal, under the red towel, under
+          the white towel
+        * de: light blue on the blue towel beneath the woman's forearm, dark
+          blue under the red towel
+        * surf: dark blue under the red towel
+
+## index 869
+
+| model | remaining sentence | hypothesis | translation |
+|-------|------------|-----------------|----------------|
+| random 4 | a very dumpsters boy plays with bra skateboard air the singers step of a home. | un petit garçon très très joue avec un skateboard en l' air sur la façade d' une maison . | a little boy is playing with a skateboard in the air on the front of a house. |
+
+* work too
+* textual attention quite certain considering the replaced words, very close to
+  829
+* visual: looking at the replacement
+    * dumpster -> petit
+        * yellow to red hotspot on the boy's shoulder blue over the boy's head
+    * bra -> un
+        * red hotspot on the bottom edge beneath the skateboard, blue on the
+          ground on the right of the skateboard, dark blue on the left edge of
+          the skateboard
+    * air -> en l' air
+        * en: light blue on the right of the skateboard, blue on the top left
+          edge of the door
+        * l': light blue on the right of the skateboard and a bit higher, dark
+          blue on the left bottom edge of the door, and above the boy's head
+        * air: light blue on and above the boy's head
+    * singers -> sur la façade
+        * sur: red hotspot on the top left edge of the door, dark blue on the
+          boy's head and left and right of the skateboard
+        * la: blue on the top left edge of the door, light blue on the bottom
+          edge beneath the skateboard, dark blue on the ground on the right
+          of the skateboard
+        * façade: dark blue on the left and right of the skateboard, on the
+          left bottom edge of the door
+    
+
 * high image attention for complete model correlates with correct attention
 * note: hotspot or high image attention generally refers to an attention value
   close to 0.1 - 0.4 (significantly higher than the other spots, but only about
@@ -2038,6 +2340,7 @@ rem 2
 | random replacement of jj | seamstress carefully building her art | on voit une art faisant du art sur sa œuvre . | we see art making art on his work. |
 | random replacement of prp | seamstress carefully performing my art |  ces nageuses se produisant dans leur œuvre . |   these swimmers performing in their work. | 
 | random replacement of in | seamstress carefully performing her art |  il y a pas l&apos; art qu&apos; il effectue un art . | it's not the art he's doing an art. |
+| random 4 replacement | naps folic foosball her art | une femme se fait couper les bras | a woman gets her arms cut off
 
 * complete model fails to translate this sentence correctly
 * replacement thoroughly confuses model -> trained models perform considerably
@@ -2121,6 +2424,8 @@ rem 2
     * combination with barely increasing image attention: highest increase of
       uncertainty in this case
 * replacing IN barely changes anything, simply translation of foil word
+* random 4 replacement manages to translate the begging of sentence; femme has
+  red hotspot on the woman's face
 * 17 is great example of wrong translations
     * image attentions: 0.10 - 0.40
     * random 0.175
