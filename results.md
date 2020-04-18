@@ -2051,7 +2051,8 @@ rem 2
 
 | model | remaining sentence | hypothesis | translation |
 |-------|------------|-----------------|----------------|
-| random 4 | pink keg on a snowie onesie finale tents on a platform | des gens debout sur une pente enneigèe avec des tentes sur une plate-forme.| people standing on a snowy slope with tents on a platform.  |
+| random 4 | pink keg on a snowy onesie finale tents on a platform | des gens debout sur une pente enneigèe avec des tentes sur une plate-forme.| people standing on a snowy slope with tents on a platform.  |
+| random nn4 | pink pull on a snowy campaign has meats on a elephant | un homme seul sur un mur enneigè a des arbres sur un rocher . | a lonely man on a snow-covered wall has trees on a rock. |
 
 * quality actually higher than for ablations
 * unfortunately, attention hotspot yellow to red is always in the same place or
@@ -2061,6 +2062,13 @@ rem 2
 * no causality between visual and translation
     * pente (slope): dark blue over almost all of the image
     * gens (people): yellow on the orange tent
+* nn4
+* except for pink pull textual translation shows word to word attention
+* visual attention is lowest yet (look up heatmap here)
+* rocher: small attention on the mountain
+* arbres: attention on the one part of the left side that does *not* have
+  trees!?!?!
+* homme: of course left edge hotspo again..:
 
 
 ## index 678
@@ -2068,6 +2076,7 @@ rem 2
 | model | remaining sentence | hypothesis | translation |
 |-------|------------|-----------------|----------------|
 | random 4 | a monster atyl-atyl flies slouched down supervise a mound of dirt | un homme en bleu descend un pont de terre .| a man in blue comes down a dirt bridge .  |
+| random nn4 | a bowtie miner flies upside down over a midair of relaxing. | un ouvrier de rue se met du bas sur une rampe de bèton . | a street worker stands on a concrete ramp from below.  |
 
 * again, close to k=2 performance, but last few words are translated wrong
 * textual attention is mostly very weak
@@ -2099,12 +2108,42 @@ rem 2
     * terre: light blue next to the truck (left), blue on the bottom below 
       the left end of the ramp, dark blue on the edge grey/yellow plane on the right
       and beneath the truck
+* nn4
+* textual is again very weak
+    * bowtie mine has only light grey
+    * midair of relaxing has only barely visible grey
+    * a is only black one
+    * over is dark grey as are flies upside, though stretched to three words
+* virtual
+    * bowtie miner -> ouvrier de rue
+        * ouvrier: red hotspot on left side of truck 
+        * de: light blue to yellow on lowest audience to the left, dark blue on
+          the upper half of the truck, beneath the TIME banner on the right, on
+          the audience right aboove the grey area on the right
+        * rue: blue on the bottom on the left beneath the advertisement, on the
+          right start of the ramp dark
+          blue on lowest audience to the left, on TIME on the left and on 
+          right edge grey area/audience
+    * midair -> rampe de bèton
+        * rampe: blue in the audience above the first dark yellow block on the left,
+          dark blue on the left wheel of the truck, on right edge grey area/audience,
+          left top of the ramp
+        * de: light blue on right edge grey area/audience, left edge of the
+          ramp, dark blue on lowest audience to the left, beneath the right
+          start of the ramp
+        * bèton: blue on the edge grey/yellow plane on the right, beneath
+          the left side of the ramp, dark blue on left top of the ramp, 
+          on the audience above the first dark yellow block on the left, 
+          on the left edge of the image on the height of the bottom of the ramp
+
+    * relaxing -> bèton
 
 ## index 706
 
 | model | remaining sentence | hypothesis | translation |
 |-------|------------|-----------------|----------------|
 | random 4 | a woman walking motioning wakeboard laying lined pope cars in the dark | une femme marchant en haut d' une rue bordèe de voitures en arrière-plan.  | a woman walking up a street lined with cars in the background. |
+| random nn4 | a lady walking down a army lined with tools in the cluster | une femme marchant dans une rue bordèe de gens en arrière-plan. | a woman walking down a street lined with people in the background. |
 
 * works!!!!!
 * textual attention is certain on the first three words and cars, but all else
@@ -2131,11 +2170,29 @@ rem 2
 * arrière-plan: yellow on the bottom left corner, dark blue beneath the woman,
   on the 1st car on the right and on the spot on the building on the right
 
+* nn4
+* textual is only weak for "cluster"
+* visual very high
+    * army -> rue 
+      light blue to yellow above the right front car, dark blue on all other
+      cars
+    * tools -> de gens
+        * de: light blue on the woman, the first floor of the first building on
+          the left, on the left front of the street, dark blue on the front of
+          the first car
+        * gens: light blue to yellow above the right front car, dark blue on
+          cars on the left, dark blue on top floors of the buildings on the
+          left side
+    * cluster -> arrière-plan
+      light blue on the top floor of the last building on the left side, on the
+      last car on the right side, dark blue on the first car on the right
+
 ## index 829
 
 | model | remaining sentence | hypothesis | translation |
 |-------|------------|-----------------|----------------|
 | random 4 | an older woman in a bikini monument sunbathing on a rock nobody diplomas snowboarding | une femme àgèe en bikini bleu se penche sur un rocher en pierre avec des planches de surf. | a woman in a blue bikini leans over a rock with surfboards. |
+| random nn4 | an older congregation in a bridesmaid is sunbathing on a powder by the tourist | une vieil homme dans un bateau se tient à la tète sur une planche à còtè de la mer. |  an old man in a boat stands at the head on a plankby the sea. |
 
 * textual attention is higher than the previous example
     * black: an, older, woman, sunbathing
@@ -2162,11 +2219,33 @@ rem 2
           blue under the red towel
         * surf: dark blue under the red towel
 
+* nn4
+    * textual attention has decreased for all words, mostly for non-replaced
+      word
+        * only black is an
+        * dark grey sunbathing,by, bridesmaid, tourist
+    * visual 
+        * congregation -> vieil homme
+            * vieil: red hotspot on woman's face, dark blue under the blue
+              towel under her forearm, on the rock under her feet
+            * homme:  red hotspot on woman's face, blue on the rock under her feet
+        * bridesmaid -> bateau (boat)
+          blue on the bottom right corner, dark blue under her left sandal
+        * powder -> planche (plank)
+          blue on the bottom right corner, under the blue
+          towel under her forearm,dark blue under her left sandal
+        * tourist -> la mer (the sea)
+            * la: dark blue on the sandals 
+            * mer: blue on the water above her stomach, dark blue on top right
+              corner, under the blue towel under her forearm
+    * model goes of the track
+
 ## index 869
 
 | model | remaining sentence | hypothesis | translation |
 |-------|------------|-----------------|----------------|
 | random 4 | a very dumpsters boy plays with bra skateboard air the singers step of a home. | un petit garçon très très joue avec un skateboard en l' air sur la façade d' une maison . | a little boy is playing with a skateboard in the air on the front of a house. |
+| random nn4 | a very young swing plays with a union on the front monitor of a sibling . | un très jeune garçon joue avec un jouet sur le bord d' un bàtiment . |a very young boy plays with a toy on the edge of a building. |
 
 * work too
 * textual attention quite certain considering the replaced words, very close to
@@ -2192,6 +2271,32 @@ rem 2
           of the skateboard
         * façade: dark blue on the left and right of the skateboard, on the
           left bottom edge of the door
+
+* nn4 works too
+* textual attention word-word for most of the sentence, but non-existent from
+  monitor to sibling.
+* visual
+    * swing -> garçon
+      red hotspot left of the face of the boy, dark blue on the top left
+      edge of the door, and on the right skateboard wheel
+    * union -> jouet
+      light blue on the right edge of the skateboard/right next to it, dark
+      blue on the ground left of the skateboard
+    * monitor -> bord d' un
+        * bord: blue on the right side of the doorstep right next to the boy,
+          right beneath the right wheel of the skateboard and right above <eos>
+        * d: dark blue in the middle of the door, at the top edge of the image
+          above the boy's head, on the left edge of the image on the upper
+          wall, on the bottom edge of the image at the width of the door
+        * un: dark blue in the middle of the door, at the top edge of the image
+          above the boy's head, on the left edge of the image on the upper
+          wall, on the bottom edge of the image at the width of the door, on
+          the left of the skateboard, on the bottom left corner
+    * sibling -> bàtiment
+      blue on the right edge of the image at the height of the middle of the
+      door, dark blue on the door at the height of the boy's shoulders, on the
+      left wall at the edge of the image at the height of the boy's shoulders,
+      on the right of the skateboard right next to it
     
 
 * high image attention for complete model correlates with correct attention
