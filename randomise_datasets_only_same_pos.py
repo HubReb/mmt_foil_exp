@@ -46,13 +46,13 @@ for filename in filenames:
         new_content = []
         for line in content:
             words = line.split()
-            word_index = random.randint(0, len(words) - 2)
-            pos_tag = words[word_index].split("_")[1]
-            if pos_tag == ":":
-                pos_tag = "."
-            words = [word.split("_")[0] for word in words]
-            # print(pos_tag)
             for index in range(k):
+                word_index = random.randint(0, len(words) - 2)
+                pos_tag = words[word_index].split("_")[1]
+                if pos_tag == ":":
+                    pos_tag = "."
+                words = [word.split("_")[0] for word in words]
+                # print(pos_tag)
                 words[word_index] = random.choice(vocabulary[pos_tag])
             new_content.append(" ".join(words))
         with open(
@@ -65,8 +65,9 @@ for filename in filenames:
 for filename in filenames:
     if "test_2017" not in filename:
         continue
-    pos_replacements = ["VB", "DT", "NN", "JJ", "PRP", "IN"]
-    for k in range(1,5):
+    # pos_replacements = ["VB","DT", "NN", "JJ", "PRP", "IN"]
+    pos_replacements = ["NN"]
+    for k in range(4,5):
         with open(filepath + filename) as f:
             content = f.read().split("\n")[:-1]
         print(filepath + filename.split("en")[0] + "fr")
@@ -85,39 +86,44 @@ for filename in filenames:
                 for tag in pos_tags:
                     if pos_type in tag:
                         p_c += 1
-                if p_c >= k:
-                    exists = True
+                # if p_c >= k:
+                        exists = True
                 if exists:
                     chosen_indices = set([])
-                    for _ in range(k):
-                        while pos_type not in pos_tag:
+                    for j in range(k):
+                        while (pos_type not in pos_tag):
                             word_index = random.randint(0, len(words) - 1)
-                            if word_index in chosen_indices:
-                                continue
+                            while word_index in chosen_indices:
+                                word_index = random.randint(0, len(words) - 1)
                             pos_tag = words[word_index].split("_")[1]
                         chosen_indices.add(word_index)
                         words[word_index] = random.choice(vocabulary[pos_tag])
+                        pos_tag = "begin"
+                        if len(chosen_indices) >= p_c:
+                            break
                     words = [word.split("_")[0] for word in words]
                     new_content.append(" ".join(words))
                     new_fr_content.append(fr_content[index])
                     indices_im.append(index)
+            """
             image_features = np.load(filepath+"../../features/features_resnet50/test_2017_flickr-resnet50-res4frelu_l2_normed.npy")
             new_features = []
             for index in indices_im:
                 new_features.append(image_features[index])
             new_features = np.array(new_features)
             np.save(filepath+f"../../features/features_resnet50/test_2017_flickr-resnet50-res4frelu_l2_normed_{k}_{pos_type}.npy", new_features)
+            """
             with open(
                 filepath
                 + filename.split(".txt")[0]
-                + f"_pos_tag_controlled_random_{k}_replacement_of_{pos_type}_only.txt",
+                + f"_pos_tag_controlled_random_{k}_replacement_of_{pos_type}_all.txt",
                 "w",
             ) as f:
                 f.write("\n".join(new_content))
             with open(
                 filepath
                 + filename.split("en")[0] + "fr"
-                + f"_pos_tag_controlled_random_{k}_replacement_of_{pos_type}_only.txt",
+                + f"_pos_tag_controlled_random_{k}_replacement_of_{pos_type}_all.txt",
                 "w",
             ) as f:
                 f.write("\n".join(new_fr_content))

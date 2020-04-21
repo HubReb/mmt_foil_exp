@@ -25,7 +25,7 @@ for line in vocab:
 
 
 for filename in filenames:
-    for k in range(2, 5):
+    for k in [20]:
         with open(filepath + filename) as f:
             content = f.read().split("\n")[:-1]
         new_content = []
