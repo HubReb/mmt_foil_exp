@@ -10,7 +10,7 @@ the current nmtpytorch repository.
 
 ## Installation
 
-nmtpytorch requires at least on GPU to work! 
+nmtpytorch requires at least one GPU to work! 
 
 Clone the repository:
 
