@@ -8,6 +8,12 @@ pytorch 1.4 and CUDA 10.2. No model architectures were changed in
 the process, but the att.ipynb scripts was severly changed to reintegrate in
 the current nmtpytorch repository.
 
+## Dataset
+
+Follow the instructions on the Multi30K Data Repository Website on
+[github][https://github.com/multi30k/dataset] to obtain both the text and the
+visual features.
+
 ## Installation
 
 nmtpytorch requires at least one GPU to work! 
