@@ -4,6 +4,107 @@
 
 import numpy as np
 
+results_files = [
+    "mmt_0_remaining_results",
+    "mmt_1_remaining_results",
+    "mmt_2_remaining_results",
+    "mmt_3_remaining_results",
+    "mmt_4_remaining_results",
+    "mmt_6_remaining_results",
+    "mmt_12_remaining_results",
+    "mmt_20_remaining_results",
+    "nmt_on_random_pos_results",
+    "mmt_random_pos_replacement_results",
+    "nmt_on_random_pos2_results",
+    "mmt_random_pos_replacement2_results",
+    "nmt_on_random_pos3_results",
+    "mmt_random_pos_replacement3_results",
+    "nmt_on_random_pos4_results",
+    "mmt_random_pos_replacement4_results",
+    "mmt_random_pos_replacement_of_dt_results",
+    "mmt_random_pos_replacement_of_dt_results",
+    "mmt_random_pos_replacement_of_nn_results",
+    "mmt_random_pos_replacement_of_vb_results",
+    "mmt_random_pos_replacement_of_jj_results",
+    "mmt_random_pos_replacement_of_prp_results",
+    "mmt_random_pos_replacement_of_in_results",
+    "nmt_on_random_results",
+    "nmt_on_random_pos_results",
+    "nmt_on_random_pos_jj_results",
+    "nmt_on_random_pos_nn_results",
+    "nmt_on_random_pos_vb_results",
+    "nmt_on_random_pos_in_results",
+    "nmt_on_random_pos_prp_results",
+    "nmt_on_random_pos_dt_results",
+    "mmt_random_pos_replacement_of_jj_results",
+    "mmt_random_pos_replacement_of_nn_results",
+    "mmt_random_pos_replacement_of_vb_results",
+    "mmt_random_pos_replacement_of_prp_results",
+    "mmt_random_pos_replacement_of_dt_results",
+    "nmt_on_random_pos_jj2_results",
+    "mmt_random_pos_replacement_of_jj2_results",
+    "nmt_on_random_pos_nn2_results",
+    "mmt_random_pos_replacement_of_nn2_results",
+    "nmt_on_random_pos_vb2_results",
+    "mmt_random_pos_replacement_of_vb2_results",
+    "nmt_on_random_pos_in2_results",
+    "mmt_random_pos_replacement_of_in2_results",
+    "nmt_on_random_pos_prp2_results",
+    "mmt_random_pos_replacement_of_prp2_results",
+    "nmt_on_random_pos_dt2_results",
+    "mmt_random_pos_replacement_of_dt2_results",
+    "nmt_on_random_pos_jj3_results",
+    "mmt_random_pos_replacement_of_jj3_results",
+    "nmt_on_random_pos_nn3_results",
+    "mmt_random_pos_replacement_of_nn3_results",
+    "nmt_on_random_pos_vb3_results",
+    "mmt_random_pos_replacement_of_vb3_results",
+    "nmt_on_random_pos_in3_results",
+    "mmt_random_pos_replacement_of_in3_results",
+    "nmt_on_random_pos_prp3_results",
+    "mmt_random_pos_replacement_of_prp3_results",
+    "nmt_on_random_pos_dt3_results",
+    "mmt_random_pos_replacement_of_dt3_results",
+    "nmt_on_random_pos_jj4_results",
+    "mmt_random_pos_replacement_of_jj4_results",
+    "nmt_on_random_pos_nn4_results",
+    "mmt_random_pos_replacement_of_nn4_results",
+    "nmt_on_random_pos_vb4_results",
+    "mmt_random_pos_replacement_of_vb4_results",
+    "nmt_on_random_pos_in4_results",
+    "mmt_random_pos_replacement_of_in4_results",
+    "nmt_on_random_pos_prp4_results",
+    "mmt_random_pos_replacement_of_prp4_results",
+    "nmt_on_random_pos_dt4_results",
+    "mmt_random_pos_replacement_of_dt4_results",
+    "mmt_random_replacement2_results",
+    "mmt_random_replacement3_results",
+    "mmt_random_replacement4_results",
+    "nmt_on_random2_results",
+    "nmt_on_random3_results",
+    "nmt_on_random4_results",
+    "nmt_on_random_pos_dt_all_results",
+    "nmt_on_random_pos_in_all_results",
+    "nmt_on_random_pos_prp_all_results",
+    "nmt_on_random8_results",
+    "mmt_random_replacement8_results",
+    "nmt_on_random10_results",
+    "mmt_random_replacement10_results",
+    "nmt_on_random12_results",
+    "mmt_random_replacement12_results",
+    "nmt_on_random20_results",
+    "mmt_random_replacement20_results",
+    "nmt_on_random_all_results",
+    "mmt_random_replacement_all_results",
+    "nmt_abl0_results",
+    "nmt_abl1_results",
+    "nmt_abl2_results",
+    "nmt_abl3_results",
+    "nmt_abl4_results",
+    "nmt_abl6_results",
+    "nmt_abl12_results",
+    "nmt_abl20_results"
+]
 
 def read_file(filename):
     with open(filename) as f:
@@ -30,194 +131,6 @@ def get_mean(data):
         output += f" {np.around(score.mean(), 3)} ({np.around(score.std(), 3)}) ||"
     return output[:-1]
 
-
-print(get_mean(read_file("mmt_0_remaining_results")))
-print(get_mean(read_file("mmt_1_remaining_results")))
-print(get_mean(read_file("mmt_2_remaining_results")))
-print(get_mean(read_file("mmt_3_remaining_results")))
-print(get_mean(read_file("mmt_4_remaining_results")))
-print(get_mean(read_file("mmt_6_remaining_results")))
-print(get_mean(read_file("mmt_12_remaining_results")))
-print(get_mean(read_file("mmt_20_remaining_results")))
-print("nmt all pos")
-print(get_mean(read_file("nmt_on_random_pos_results")))
-print("all pos")
-print(get_mean(read_file("mmt_random_pos_replacement_results")))
-print("nmt all pos2")
-print(get_mean(read_file("nmt_on_random_pos2_results")))
-print("all pos2")
-print(get_mean(read_file("mmt_random_pos_replacement2_results")))
-print("nmt all pos3")
-print(get_mean(read_file("nmt_on_random_pos3_results")))
-print("all pos3")
-print(get_mean(read_file("mmt_random_pos_replacement3_results")))
-print("nmt all pos4")
-print(get_mean(read_file("nmt_on_random_pos4_results")))
-print("all pos4")
-print(get_mean(read_file("mmt_random_pos_replacement4_results")))
-print("dt")
-print(get_mean(read_file("mmt_random_pos_replacement_of_dt_results")))
-print("nn")
-print(get_mean(read_file("mmt_random_pos_replacement_of_nn_results")))
-print("vb")
-print(get_mean(read_file("mmt_random_pos_replacement_of_vb_results")))
-print("jj")
-print(get_mean(read_file("mmt_random_pos_replacement_of_jj_results")))
-print("prp")
-print(get_mean(read_file("mmt_random_pos_replacement_of_prp_results")))
-print("in")
-print(get_mean(read_file("mmt_random_pos_replacement_of_in_results")))
-print("nmt random")
-print(get_mean(read_file("nmt_on_random_results")))
-print("nmt random pos")
-print(get_mean(read_file("nmt_on_random_pos_results")))
-print("nmt random pos jj")
-print(get_mean(read_file("nmt_on_random_pos_jj_results")))
-print("nmt random pos nn")
-print(get_mean(read_file("nmt_on_random_pos_nn_results")))
-print("nmt random pos vb")
-print(get_mean(read_file("nmt_on_random_pos_vb_results")))
-print("nmt random pos in")
-print(get_mean(read_file("nmt_on_random_pos_in_results")))
-print("nmt random pos prp")
-print(get_mean(read_file("nmt_on_random_pos_prp_results")))
-print("nmt random pos dt")
-print(get_mean(read_file("nmt_on_random_pos_dt_results")))
-print("mmt random pos jj")
-print(get_mean(read_file("mmt_random_pos_replacement_of_jj_results")))
-print("mmt random pos nn")
-print(get_mean(read_file("mmt_random_pos_replacement_of_nn_results")))
-print("mmt random pos vb")
-print(get_mean(read_file("mmt_random_pos_replacement_of_vb_results")))
-print("mmt random pos in")
-print(get_mean(read_file("mmt_random_pos_replacement_of_in_results")))
-print("mmt random pos prp")
-print(get_mean(read_file("mmt_random_pos_replacement_of_prp_results")))
-print("mmt random pos dt")
-print(get_mean(read_file("mmt_random_pos_replacement_of_dt_results")))
-print("nmt random pos jj2")
-print(get_mean(read_file("nmt_on_random_pos_jj2_results")))
-print("mmt random pos jj2")
-print(get_mean(read_file("mmt_random_pos_replacement_of_jj2_results")))
-print("nmt random pos nn2")
-print(get_mean(read_file("nmt_on_random_pos_nn2_results")))
-print("mmt random pos nn2")
-print(get_mean(read_file("mmt_random_pos_replacement_of_nn2_results")))
-print("nmt random pos vb2")
-print(get_mean(read_file("nmt_on_random_pos_vb2_results")))
-print("mmt random pos vb2")
-print(get_mean(read_file("mmt_random_pos_replacement_of_vb2_results")))
-print("nmt random pos in2")
-print(get_mean(read_file("nmt_on_random_pos_in2_results")))
-print("mmt random pos in2")
-print(get_mean(read_file("mmt_random_pos_replacement_of_in2_results")))
-print("nmt random pos prp2")
-print(get_mean(read_file("nmt_on_random_pos_prp2_results")))
-print("mmt random pos prp2")
-print(get_mean(read_file("mmt_random_pos_replacement_of_prp2_results")))
-print("nmt random pos dt2")
-print(get_mean(read_file("nmt_on_random_pos_dt2_results")))
-print("mmt random pos dt2")
-print(get_mean(read_file("mmt_random_pos_replacement_of_dt2_results")))
-print("nmt random pos jj3")
-print(get_mean(read_file("nmt_on_random_pos_jj3_results")))
-print("mmt random pos jj3")
-print(get_mean(read_file("mmt_random_pos_replacement_of_jj3_results")))
-print("nmt random pos nn3")
-print(get_mean(read_file("nmt_on_random_pos_nn3_results")))
-print("mmt random pos nn3")
-print(get_mean(read_file("mmt_random_pos_replacement_of_nn3_results")))
-print("nmt random pos vb3")
-print(get_mean(read_file("nmt_on_random_pos_vb3_results")))
-print("mmt random pos vb3")
-print(get_mean(read_file("mmt_random_pos_replacement_of_vb3_results")))
-print("nmt random pos in3")
-print(get_mean(read_file("nmt_on_random_pos_in3_results")))
-print("mmt random pos in3")
-print(get_mean(read_file("mmt_random_pos_replacement_of_in3_results")))
-print("nmt random pos prp3")
-print(get_mean(read_file("nmt_on_random_pos_prp3_results")))
-print("mmt random pos prp3")
-print(get_mean(read_file("mmt_random_pos_replacement_of_prp3_results")))
-print("nmt random pos dt3")
-print(get_mean(read_file("nmt_on_random_pos_dt3_results")))
-print("mmt random pos dt3")
-print(get_mean(read_file("mmt_random_pos_replacement_of_dt3_results")))
-print("nmt random pos jj4")
-print(get_mean(read_file("nmt_on_random_pos_jj4_results")))
-print("mmt random pos jj4")
-print(get_mean(read_file("mmt_random_pos_replacement_of_jj4_results")))
-print("nmt random pos nn4")
-print(get_mean(read_file("nmt_on_random_pos_nn4_results")))
-print("mmt random pos nn4")
-print(get_mean(read_file("mmt_random_pos_replacement_of_nn4_results")))
-print("nmt random pos vb4")
-print(get_mean(read_file("nmt_on_random_pos_vb4_results")))
-print("mmt random pos vb4")
-print(get_mean(read_file("mmt_random_pos_replacement_of_vb4_results")))
-print("nmt random pos in4")
-print(get_mean(read_file("nmt_on_random_pos_in4_results")))
-print("mmt random pos in4")
-print(get_mean(read_file("mmt_random_pos_replacement_of_in4_results")))
-print("nmt random pos prp4")
-print(get_mean(read_file("nmt_on_random_pos_prp4_results")))
-print("mmt random pos prp4")
-print(get_mean(read_file("mmt_random_pos_replacement_of_prp4_results")))
-print("nmt random pos dt4")
-print(get_mean(read_file("nmt_on_random_pos_dt4_results")))
-print("mmt random pos dt4")
-print(get_mean(read_file("mmt_random_pos_replacement_of_dt4_results")))
-print("mmt random replacement2")
-print(get_mean(read_file("mmt_random_replacement2_results")))
-print("mmt random replacement3")
-print(get_mean(read_file("mmt_random_replacement3_results")))
-print("mmt random replacement4")
-print(get_mean(read_file("mmt_random_replacement4_results")))
-print("nmt random replacement2")
-print(get_mean(read_file("nmt_on_random2_results")))
-print("nmt random replacement3")
-print(get_mean(read_file("nmt_on_random3_results")))
-print("nmt random replacement4")
-print(get_mean(read_file("nmt_on_random4_results")))
-print("nmt random dt on all")
-print(get_mean(read_file("nmt_on_random_pos_dt_all_results")))
-print("nmt random in on all")
-print(get_mean(read_file("nmt_on_random_pos_in_all_results")))
-print("nmt random prp on all")
-print(get_mean(read_file("nmt_on_random_pos_prp_all_results")))
-print("nmt random8")
-print(get_mean(read_file("nmt_on_random8_results")))
-print("mmt random8")
-print(get_mean(read_file("mmt_random_replacement8_results")))
-print("nmt random10")
-print(get_mean(read_file("nmt_on_random10_results")))
-print("mmt random10")
-print(get_mean(read_file("mmt_random_replacement10_results")))
-print("nmt random12")
-print(get_mean(read_file("nmt_on_random12_results")))
-print("mmt random12")
-print(get_mean(read_file("mmt_random_replacement12_results")))
-print("nmt random20")
-print(get_mean(read_file("nmt_on_random20_results")))
-print("mmt random20")
-print(get_mean(read_file("mmt_random_replacement20_results")))
-print("nmt all replaced")
-print(get_mean(read_file("nmt_on_random_all_results")))
-print("mmt all results")
-print(get_mean(read_file("mmt_random_replacement_all_results")))
-print("nmt abl0 replaced")
-print(get_mean(read_file("nmt_abl0_results")))
-print("nmt abl1 replaced")
-print(get_mean(read_file("nmt_abl1_results")))
-print("nmt abl2 replaced")
-print(get_mean(read_file("nmt_abl2_results")))
-print("nmt abl3 replaced")
-print(get_mean(read_file("nmt_abl3_results")))
-print("nmt abl4 replaced")
-print(get_mean(read_file("nmt_abl4_results")))
-print("nmt abl6 replaced")
-print(get_mean(read_file("nmt_abl6_results")))
-print("nmt abl12 replaced")
-print(get_mean(read_file("nmt_abl12_results")))
-print("nmt abl20 replaced")
-print(get_mean(read_file("nmt_abl20_results")))
+for filename in results_files:
+    print(filename)
+    print(get_mean(read_file(filename)))
