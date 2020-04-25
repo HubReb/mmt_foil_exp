@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-# author: R. Hubert
-# email: hubert@cl.uni-heidelberg.de
 
 """ replace one word in each sentence with a randomly chosen word """
 
@@ -25,7 +23,7 @@ for line in vocab:
 
 
 for filename in filenames:
-    for k in [20]:
+    for k in [1, 2, 3, 4, 6, 8, 10, 12, 20]:
         with open(filepath + filename) as f:
             content = f.read().split("\n")[:-1]
         new_content = []
@@ -37,3 +35,13 @@ for filename in filenames:
             new_content.append(" ".join(words))
         with open(filepath + filename.split(".txt")[0] + f"{k}_random_replacement.txt", "w") as f:
             f.write("\n".join(new_content))
+    with open(filepath + filename) as f:
+        content = f.read().split("\n")[:-1]
+    new_content = []
+    for line in content:
+        words = line.split()
+        for index, _ in enumerate(words):
+            words[index] = random.choice(vocabulary)
+        new_content.append(" ".join(words))
+    with open(filepath + filename.split(".txt")[0] + "all_random_replacement.txt", "w") as f:
+        f.write("\n".join(new_content))

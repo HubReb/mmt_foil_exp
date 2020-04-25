@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-# author: R. Hubert
-# email: hubert@cl.uni-heidelberg.de
 
 """ create training and test files with k remaining words """
 
@@ -29,7 +27,8 @@ for filename in filenames:
                 counter += 1
             new_contents[k].append(new_line.strip())
     for k in ks:
+        filename = filepath + filename.split(".txt")[0]
         with open(
-            filepath + filename.split(".txt")[0] + f"_{k}_words_remaining.txt", "w"
+            filename + f"_{k}_words_remaining.txt", "w"
         ) as f:
             f.write("\n".join(new_contents[k]))

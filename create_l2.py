@@ -4,8 +4,10 @@ import glob
 
 import numpy as np
 
+from constants import imagepath
+
 for filename in glob.iglob(
-    "/home/rebekka/t2b/Projekte/vision/multi30k-dataset/data/features/features_resnet50/*"
+    imagepath + "*"
 ):
     if (not "avg" in filename) and (not "train" in filename):
         print(filename)
