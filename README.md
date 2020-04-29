@@ -121,7 +121,8 @@ nmtpy train -C <config file>
 ```
 
 to train a model with the configuration given in the config file. We provide
-all configuration files to repeat the experiments performed in the report.
+all configuration files to repeat the experiments performed in the report in
+the `confs` folder.
 For instance, run
 
 ```
