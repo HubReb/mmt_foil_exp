@@ -11,7 +11,7 @@ the current nmtpytorch repository.
 ## Dataset
 
 Follow the instructions on the Multi30K Data Repository Website on
-[github][https://github.com/multi30k/dataset] to obtain both the text and the
+[[github][https://github.com/multi30k/dataset]] to obtain both the text and the
 visual features.
 
 ## Installation
