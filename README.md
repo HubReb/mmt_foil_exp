@@ -1,5 +1,7 @@
 # MMT_experiments
 
+## Archived as of January 2023
+
 Further experiments on the basis of "Probing the Need for Visual Context in Multimodal Machine Translation" (Caglayan et al, 2019) [1]
 
 All experiments are implemented in nmtpytorch [2]. The included copy of the
